@@ -1,0 +1,9 @@
+Package: me.kfur.darkkeyboard
+Name: Dark Keyboard
+Depends: mobilesubstrate
+Version: 0.0.1
+Architecture: iphoneos-arm
+Description: Make keyboard dark system wide
+Maintainer: kfur
+Author: kfur
+Section: Tweaks

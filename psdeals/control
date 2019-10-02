@@ -1,0 +1,9 @@
+Package: me.kfur.psdeals
+Name: PS Deals++
+Depends: mobilesubstrate
+Version: 0.0.1
+Architecture: iphoneos-arm
+Description: PS Deals semi functional premium without ads 
+Maintainer: kfur [https://github.com/kfur]
+Author: kfur [https://github.com/kfur]
+Section: Tweaks

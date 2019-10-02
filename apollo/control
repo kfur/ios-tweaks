@@ -1,0 +1,9 @@
+Package: me.kfur.apollo
+Name: apollo
+Depends: mobilesubstrate
+Version: 0.0.1
+Architecture: iphoneos-arm
+Description: An awesome MobileSubstrate tweak!
+Maintainer: kfur
+Author: kfur
+Section: Tweaks
