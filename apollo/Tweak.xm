@@ -19,7 +19,7 @@
 	}
 	
 	UIColor* tc = [label textColor];
-	[label setText: [[label text] stringByAppendingString:@"\nBrought To You By kfur"]];
+	[label setText: [[label text] stringByAppendingString:@"\nPro brought To You By kfur"]];
 	[label setTextColor: tc];
 }
 
@@ -43,26 +43,8 @@ willDisplayFooterView:(UIView *)view
 
 %end
 
-%group spring
-%hook AppDelegate
 
-- (void)productsRequest:(id)arg1 didReceiveResponse:(id)arg2 {
-//	%log;
-	%orig;
-	return;
-}
-
-%end
-%end
-
-//%hook SKReceiptRefreshRequest
-
-//- (void)start {
-//	NSLog(@"[tweak] attempt to recive new receipt");
-//}
-
-//%end
-
+/*
 %hook NSUserDefaults
 // For Ultra 
 - (NSString *)stringForKey:(NSString *)defaultName {
@@ -74,17 +56,7 @@ willDisplayFooterView:(UIView *)view
 }
 
 %end
-
-//%hook NSData
-
-//- (instancetype)initWithContentsOfURL:(NSURL *)url 
-//                              options:(NSDataReadingOptions)readOptionsMask 
-//                                error:(NSError * _Nullable *)errorPtr {
-//	NSLog(@"[tweak] nsdata from url: %@", url);
-//	return %orig;
-//}
-
-//%end
+*/
 
 typedef struct {
 	uint64_t _countAndFlagsBits;
@@ -92,16 +64,16 @@ typedef struct {
 } string_obj;
 
 static BOOL (*orig_string_compare)(string_obj, string_obj, int) = NULL;
-// For Pro and Ultra
+// For Pro and Ultra(semifunctional)
 BOOL string_compare(string_obj a,string_obj b, int c) {
-	NSLog(@"[tweak] a._countAndFlagsBits == %llx && a.BridgeObject == %llx", a._countAndFlagsBits, a.BridgeObject);
-	NSLog(@"[tweak] b._countAndFlagsBits == %llx && b.BridgeObject == %llx", b._countAndFlagsBits, b.BridgeObject);
+//	NSLog(@"[tweak] a._countAndFlagsBits == %llx && a.BridgeObject == %llx", a._countAndFlagsBits, a.BridgeObject);
+//	NSLog(@"[tweak] b._countAndFlagsBits == %llx && b.BridgeObject == %llx", b._countAndFlagsBits, b.BridgeObject);
 	if (b._countAndFlagsBits == (uint64_t)5942622176697803123U && b.BridgeObject == (uint64_t)17149835407180260197U) {
 		NSLog(@"[tweakc] pro bypass checks");
 		return YES;
-	} else if (b._countAndFlagsBits == (uint64_t)24953U && b.BridgeObject == (uint64_t)16285016252571713536U) {
-		NSLog(@"[tweakc] ultra bypass checks");
-		return YES;
+//	} else if (b._countAndFlagsBits == (uint64_t)24953U && b.BridgeObject == (uint64_t)16285016252571713536U) {
+//		NSLog(@"[tweakc] ultra bypass checks");
+//		return YES;
 	} else {
 		NSLog(@"[tweakc] return original");
 		return orig_string_compare(a,b,c);
@@ -110,11 +82,8 @@ BOOL string_compare(string_obj a,string_obj b, int c) {
 
 
 %ctor {
-	NSLog(@"[tweak] Apollo Pro Unltra enabled");
-	
 	%init(SView=objc_getClass("Apollo.SettingsViewController"));
 	%init(hello, SettingsAboutViewController = objc_getClass("Apollo.SettingsAboutViewController"));
-	%init(spring, AppDelegate = objc_getClass("Apollo.AppDelegate"));
 	MSHookFunction(MSFindSymbol(NULL, "_$ss27_stringCompareWithSmolCheck__9expectingSbs11_StringGutsV_ADs01_G16ComparisonResultOtF"),
                    (void*)string_compare,
                    (void**)&orig_string_compare);
