@@ -1,0 +1,9 @@
+Package: me.kfur.tg-unrestrict
+Name: Telegram-Unrestrict
+Depends: mobilesubstrate
+Version: 0.0.1
+Architecture: iphoneos-arm
+Description: Unrestrict bots/channels
+Maintainer: kfur
+Author: kfur
+Section: Tweaks
