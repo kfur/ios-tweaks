@@ -1,0 +1,9 @@
+Package: me.kfur.lingvo
+Name: Lingvo++
+Version: 0.0.1
+Architecture: iphoneos-arm
+Description: Unlock premium
+Maintainer: kfur
+Author: kfur
+Section: Tweaks
+Depends: mobilesubstrate (>= 0.9.5000)
