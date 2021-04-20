@@ -22,6 +22,34 @@ the generation of a class list and an automatic constructor.
 %end
 
 
+%hook CameraController
+
+- (_Bool) isTrialMode {
+        return NO;
+}
+
+- (long long ) trialPagesLeft {
+        return 100000;
+}
+
+%end
+
+%hook OCRPopoverViewController
+
+- (long long ) pagesCount {
+        return 100000;
+}
+
+%end
+
+%hook TrialMonetizationManager
+
+- (long long) trialPagesAmount {
+	return 100000;
+}
+
+%end
+
 %ctor {
 	%init(FSPurchaseCoordinator=objc_getClass("FineScanner.FSPurchaseCoordinator"));
 }
